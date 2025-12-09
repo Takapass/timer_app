@@ -1,0 +1,26 @@
+{% extends "timerapp/base.html" %}
+{% block content %}
+<button class="back" onclick="location.href='/'">戻る</button>
+<div class="menus"> 
+  <h2>トレーニングメニュー</h2>
+
+  <div class="content-wrapper">
+    <div class="menu-form-area">
+      <form id="menuForm" onsubmit="return false;">
+          <label for="{{ form.name.id_for_label }}">Name:</label>
+          {{ form.name }}
+          <button id="addMenuBtn">追加</button>
+          
+      </form>
+    </div>
+
+    <div id="menuList" class="menu-list">
+        {% for m in menus %}
+        <div class="item" data-id="{{ m.id }}" onclick="goToTimer({{ m.id }})">{{ m.name }}</div>
+        {% empty %}
+        <div>メニューがまだありません</div>
+        {% endfor %}
+    </div>
+  </div>
+</div>
+{% endblock %}

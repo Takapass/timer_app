@@ -1,0 +1,22 @@
+{% load static %}
+<!doctype html>
+<html lang="ja">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>{% block title %}Training Timer{% endblock %}</title>
+    <link rel="stylesheet" href="{% static 'timerapp/css/style.css' %}">
+    <script>window.CSRF_TOKEN = "{{ csrf_token }}";</script>
+    {% block head %}{% endblock %}
+</head>
+
+<body>
+    <div class="container">
+        {% block content %}{% endblock %}
+    </div>
+    <script src="{% static 'timerapp/js/timer.js' %}"></script>
+    {% block scripts %}{% endblock %}
+</body>
+
+</html>

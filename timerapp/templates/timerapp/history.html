@@ -1,0 +1,26 @@
+{% extends "timerapp/base.html" %}
+
+{% block title %}過去のトレーニング{% endblock %}
+
+{% block content %}
+<button class="back" onclick="location.href='/'">戻る</button>
+<h2>過去のトレーニング</h2>
+<div class="menu-list">
+  {% for s in sessions %}
+    <div class="item">
+      <div class="menu">
+        {% if s.menu %}
+          {{ s.menu.name }}
+        {% else %}
+          未設定
+        {% endif %}
+      </div>
+      <div class="time">{{ s.duration_display }}</div>
+      <div class="date">{{ s.created_at|date:"Y-m-d H:i" }}</div>
+      <div class="note">{{ s.note|default:"" }}</div>
+    </div>
+  {% empty %}
+    <div>記録がありません</div>
+  {% endfor %}
+</div>
+{% endblock %}

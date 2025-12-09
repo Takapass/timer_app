@@ -1,0 +1,21 @@
+{% extends "timerapp/base.html" %}
+{% block content %}
+<button class="back" onclick="location.href='{% url 'timerapp:menus' %}'">戻る</button>
+
+<div class="timer">
+    <h2 id="currentMenu">{{ menu.name }}</h2>
+
+    <div id="timeBox" class="timer-box">00:00</div>
+
+    <div class="controls">
+        <button class="circle" id="resetBtn">R</button>
+        <button class="circle" id="pauseBtn">Ⅱ</button>
+        <button class="circle" id="playBtn">▶</button>
+    </div>
+
+    </div>
+
+<script>
+    const MENU_ID = {{ menu.id }};
+</script>
+{% endblock %}Ï

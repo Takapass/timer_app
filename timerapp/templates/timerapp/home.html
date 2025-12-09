@@ -1,0 +1,13 @@
+{% extends "timerapp/base.html" %}
+{% block content %}
+<div class="home">
+    <h1>Training Timer</h1>
+    {% if user.is_authenticated %}
+    <a class="pill" href="{% url 'timerapp:menus' %}">トレーニングメニューを決めましょう</a>
+    <a class="start" href="{% url 'timerapp:menus' %}">スタート</a>
+    <a class="pill" href="{% url 'timerapp:history' %}">過去のトレーニング</a>
+    {% else %}
+    <a class="pill" href="{% url 'login' %}?next=/">ログインして始める</a>
+    {% endif %}
+</div>
+{% endblock %}
