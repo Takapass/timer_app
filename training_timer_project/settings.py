@@ -23,15 +23,18 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = "django-insecure-temp-key-for-dev-only-1234567890"
 
 
-# DEBUG = os.getenv("DEBUG", "False") == "True"
-DEBUG = True
+DEBUG = os.getenv("DEBUG", "False") == "True"
+# DEBUG = True　　　#開発用
+
+DEBUG = False
+ALLOWED_HOSTS = ['*']
 
 
-ALLOWED_HOSTS = [
-    "localhost",
-    "127.0.0.1",
-    ".railway.app",
-]
+# ALLOWED_HOSTS = [
+#     "localhost",
+#     "127.0.0.1",
+#     ".railway.app",
+# ]
 
 # =========================
 # アプリ設定
@@ -115,7 +118,7 @@ USE_TZ = True
 # Static（Railway最重要）
 # =========================
 STATIC_URL = "/static/"
-STATICFILES_DIRS = [BASE_DIR / "timerapp" / "static"]
+# STATICFILES_DIRS = [BASE_DIR / "timerapp" / "static"]
 STATIC_ROOT = BASE_DIR / "staticfiles"
 
 # WhiteNoise 圧縮

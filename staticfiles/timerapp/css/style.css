@@ -1,0 +1,330 @@
+:root{
+    --bg1:#0a0220;
+    --bg2:#120032;
+    --accent:#fff04d;
+    --pill-bg:#fff;
+  }
+  
+  * { box-sizing: border-box; }
+  
+  body{
+    margin:0;
+    font-family: "Hiragino Kaku Gothic ProN","Noto Sans JP",sans-serif;
+    background: radial-gradient(circle at top left,#150050 0%,#050018 60%);
+    color:#fff;
+  }
+  
+  /* =========================================
+     🔵 基本レイアウト
+  ========================================= */
+  .container{
+    width:100%;
+    min-height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:flex-start;
+    padding-top:60px;
+  }
+  
+  /* 画面ごとの最大幅（デスクトップ用） */
+  .home,
+  .menus,
+  .history,
+  .timer{
+    width:100%;
+    max-width:500px;
+    text-align:center;
+    margin:0 auto;
+  }
+  
+  /* =========================================
+     🔵 タイトル（画像通り）
+  ========================================= */
+  h1,h2{
+    background:#fff;
+    color:#000;
+    padding:14px 28px;
+    border-radius:26px;
+    display:inline-block;
+    margin-bottom:25px;
+    font-size:28px;
+  }
+  
+  /* =========================================
+     🔵 ホーム画面のボタン
+  ========================================= */
+  .pill,.start{
+    display:block;
+    width:80%;
+    margin:14px auto;
+    padding:16px 0;
+    border-radius:30px;
+    text-decoration:none;
+    font-size:18px;
+  }
+  
+  .pill{ background:#fff; color:#000; }
+  .start{ background:var(--accent); color:#000; font-weight:700; }
+  
+  /* =========================================
+     🔵 過去のトレーニング一覧
+  ========================================= */
+  .menu-list{
+    /* 修正・調整: メニュー追加画面で右側に配置するための設定 */
+    background:rgba(255,255,255,0.8); /* 少し薄めの白 */
+    color:#000;
+    padding:20px;
+    border-radius:24px;
+    width:90%;
+    margin:0 auto;
+    /* 新規追加: メニュー画面での相対位置調整用 */
+    flex-grow:1;
+    max-width:300px; /* メニューリストの最大幅を調整 */
+  }
+  
+  .item{
+    background:#e6e6e6;
+    margin:12px 0;
+    padding:14px;
+    border-radius:14px;
+    cursor:pointer;
+    font-size:16px;
+  }
+  
+  /* メニュー画面のレイアウト調整 */
+  .menus .content-wrapper {
+      display: flex;
+      justify-content: space-around;
+      align-items: flex-start;
+      gap: 20px;
+      width: 100%;
+      margin: 0 auto;
+      max-width: 600px; /* メニュー画面のコンテンツ全体を少し広めに設定 */
+  }
+
+  .menus .menu-form-area {
+      text-align: left;
+      width: 100%;
+      max-width: 150px;
+  }
+
+  .menus .menu-form-area label {
+    display: block;
+    color: #fff;
+    margin-bottom: 5px;
+    font-size: 16px;
+  }
+
+  .menus .menu-form-area input[type="text"] {
+    width: 100%;
+    padding: 8px;
+    border-radius: 8px;
+    border: none;
+    margin-bottom: 10px;
+    font-size: 14px;
+  }
+  
+  /* フォーム要素の修正 */
+  #menuForm p {
+      margin: 0;
+      color: #fff;
+  }
+  
+  #menuForm input[type="text"] {
+      width: 100%;
+      padding: 8px;
+      border-radius: 8px;
+      border: none;
+      margin-bottom: 10px;
+      font-size: 14px;
+      color: #000;
+  }
+
+  #addMenuBtn {
+      padding: 8px 15px;
+      border-radius: 8px;
+      background: #fff;
+      color: #000;
+      border: none;
+      cursor: pointer;
+      font-size: 14px;
+  }
+
+  /* =========================================
+     🔵 タイマー画面
+  ========================================= */
+  .timer-box{
+    background:#fff;
+    color:#000;
+    border-radius:26px;
+    padding:30px 20px;
+    font-size:48px;
+    width:80%;
+    margin:20px auto;
+  }
+  
+  .controls{ margin-top:20px; }
+  
+  .circle{
+    /* デザイン案に近づけるための修正 */
+    width:60px; /* 少し小さく */
+    height:60px; /* 少し小さく */
+    border-radius:50%;
+    border:none;
+    margin:0 15px; /* マージンを増やして離す */
+    font-size:24px; /* アイコンを大きく */
+    background:rgba(255, 255, 255, 0.9); /* 白背景 */
+    color: #150050; /* 背景色に近い濃い色を文字色に */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* 軽い影を追加 */
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+  /* ホバー/アクティブ時のスタイルも設定すると良い */
+  .circle:active {
+      opacity: 0.7;
+      box-shadow: none;
+  }
+  /* =========================================
+     🔵 戻るボタン（左上固定）
+  ========================================= */
+  .back{
+    position:fixed;
+    left:16px;
+    top:16px;
+    padding:8px 14px;
+    border-radius:18px;
+    background:#fff;
+    color:#000;
+    border:none;
+    z-index:20;
+  }
+  
+  /* =========================================
+     🔵 メモ
+  ========================================= */
+  #note{
+    width:90%;
+    height:80px;
+    margin-top:20px;
+    border-radius:12px;
+    padding:10px;
+    font-size:15px;
+  }
+  
+  #saveBtn{
+    margin-top:10px;
+    padding:10px 20px;
+    border-radius:20px;
+    border:none;
+    background:#fff;
+    font-size:15px;
+  }
+  
+  /* =========================================
+     📱 スマホ完全対応 (iPhone SE含む)
+  ========================================= */
+  @media (max-width:480px){
+  
+    .container{
+      padding-top:40px;
+    }
+  
+    .home,.menus,.history,.timer{
+      max-width:320px;
+    }
+
+    /* メニュー画面 (スマホ) - 縦並びに戻す */
+    .menus .content-wrapper {
+        flex-direction: column;
+        align-items: center;
+        gap: 10px;
+    }
+
+    .menus .menu-form-area {
+        max-width: 100%;
+        text-align: center;
+    }
+
+    #menuForm {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    #menuForm p {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    #menuForm input[type="text"] {
+        max-width: 150px; /* 入力欄の幅を調整 */
+    }
+
+    .menu-list {
+        width: 90%;
+        max-width: 300px;
+        margin-top: 20px;
+    }
+  
+    h1{
+      font-size:22px;
+      padding:10px 20px;
+    }
+  
+    h2{
+      font-size:18px;
+    }
+  
+    /* ホームボタン */
+    .pill,.start{
+      width:100%;
+      padding:12px 0;
+      font-size:14px;
+    }
+  
+    /* 一覧枠 */
+    .menu-list{
+      padding:14px;
+      border-radius:20px;
+    }
+  
+    .item{
+      font-size:14px;
+      padding:12px;
+      border-radius:12px;
+    }
+  
+    /* タイマー */
+    .timer-box{
+      width:100%;
+      font-size:34px;
+      padding:20px;
+    }
+  
+    .circle{
+        width:50px; /* スマホ用にさらに調整 */
+        height:50px;
+        font-size:20px;
+        margin:0 8px; /* マージンも調整 */
+      }
+  
+    /* 戻るボタン */
+    .back{
+      top:10px;
+      left:10px;
+      padding:6px 10px;
+      font-size:12px;
+    }
+  
+    #note{
+      width:95%;
+      height:70px;
+      font-size:13px;
+    }
+  
+    #saveBtn{
+      font-size:13px;
+    }
+  }
