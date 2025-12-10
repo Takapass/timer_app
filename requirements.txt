@@ -7,7 +7,6 @@ django-crispy-forms==2.5
 gunicorn==23.0.0
 packaging==25.0
 psycopg==3.3.2
-psycopg2-binary==2.9.11
 python-dotenv==1.2.1
 sqlparse==0.5.4
 whitenoise==6.11.0
