@@ -32,8 +32,11 @@ SECRET_KEY = os.environ.get('SECRET_KEY')
 # DEBUG = True　　　#開発用
 
 DEBUG = False
-ALLOWED_HOSTS = ['*']
+# ALLOWED_HOSTS = ['*']
 
+ALLOWED_HOSTS = ['timerapp-production.up.railway.app', 'localhost', '127.0.0.1']
+
+CSRF_TRUSTED_ORIGINS = ['https://timerapp-production.up.railway.app']
 
 # ALLOWED_HOSTS = [
 #     "localhost",
