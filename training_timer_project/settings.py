@@ -34,7 +34,9 @@ SECRET_KEY = os.environ.get('SECRET_KEY')
 DEBUG = False
 # ALLOWED_HOSTS = ['*']
 
-ALLOWED_HOSTS = ['timerapp-production.up.railway.app', 'localhost', '127.0.0.1']
+# ALLOWED_HOSTS = ['timerapp-production.up.railway.app', 'localhost', '127.0.0.1']
+ALLOWED_HOSTS = ['.railway.app', '127.0.0.1', 'localhost']
+
 
 CSRF_TRUSTED_ORIGINS = ['https://timerapp-production.up.railway.app']
 
@@ -102,24 +104,33 @@ WSGI_APPLICATION = "training_timer_project.wsgi.application"
 #         }
 #     }
 
+DATABASES = {
+    'default': dj_database_url.config(
+        default=f"sqlite:///{BASE_DIR / 'db.sqlite3'}",
+        conn_max_age=600,
+        ssl_require=True
+    )
+}
+
+
 # 環境変数から接続情報を取得する
-DATABASE_HOST = os.environ.get("DB_HOST")
-DATABASE_NAME = os.environ.get("DB_NAME")
-DATABASE_USER = os.environ.get("DB_USER")
-DATABASE_PASSWORD = os.environ.get("DB_PASSWORD")
-DATABASE_PORT = os.environ.get("DB_PORT") or "3306"
+# DATABASE_HOST = os.environ.get("DB_HOST")
+# DATABASE_NAME = os.environ.get("DB_NAME")
+# DATABASE_USER = os.environ.get("DB_USER")
+# DATABASE_PASSWORD = os.environ.get("DB_PASSWORD")
+# DATABASE_PORT = os.environ.get("DB_PORT") or "3306"
 
 # データベース接続設定
-DATABASES = {
-    "default": {
-        "ENGINE": "django.db.backends.mysql",
-        "NAME": DATABASE_NAME,
-        "USER": DATABASE_USER,
-        "PASSWORD": DATABASE_PASSWORD,
-        "HOST": DATABASE_HOST,
-        "PORT": DATABASE_PORT,
-    }
-}
+# DATABASES = {
+#     "default": {
+#         "ENGINE": "django.db.backends.mysql",
+#         "NAME": DATABASE_NAME,
+#         "USER": DATABASE_USER,
+#         "PASSWORD": DATABASE_PASSWORD,
+#         "HOST": DATABASE_HOST,
+#         "PORT": DATABASE_PORT,
+#     }
+# }
 
 # =========================
 # パスワード検証
