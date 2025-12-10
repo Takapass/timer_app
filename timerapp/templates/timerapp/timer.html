@@ -1,9 +1,37 @@
 {% extends "timerapp/base.html" %}
+{% load static %}
+
 {% block content %}
 <button class="back" onclick="location.href='{% url 'timerapp:menus' %}'">戻る</button>
 
 <div class="timer">
     <h2 id="currentMenu">{{ menu.name }}</h2>
+
+    <div style="margin:10px 0;">
+      <label>ワーク (秒):
+        <input id="inputWork" type="number" min="1" value="{{ menu.work_seconds }}">
+      </label>
+
+      <label style="margin-left:10px;">休憩 (秒):
+        <input id="inputRest" type="number" min="1" value="{{ menu.rest_seconds }}">
+      </label>
+
+      <label style="margin-left:10px;">セット数:
+        <input id="inputSets" type="number" min="1" value="{{ menu.sets }}">
+      </label>
+
+      <label style="margin-left:10px;">
+        <input type="checkbox" id="inputCountdown"
+          {% if menu.countdown_mode %}checked{% endif %}>
+        カウントダウン
+      </label>
+    </div>
+
+    <div id="phaseBox" style="margin-bottom:8px; font-size:18px;">
+      PHASE: <span id="phaseLabel">WORK</span>
+      ・ セット <span id="setLabel">0</span> /
+      <span id="totalSets">{{ menu.sets }}</span>
+    </div>
 
     <div id="timeBox" class="timer-box">00:00</div>
 
@@ -13,9 +41,21 @@
         <button class="circle" id="playBtn">▶</button>
     </div>
 
+    <div style="margin-top:14px;">
+      <button id="saveBtn" class="start"
+        style="padding:8px 16px; font-size:14px;">保存</button>
+
+      <textarea id="note" placeholder="メモ"
+        style="width:90%;margin-top:8px;"></textarea>
     </div>
+</div>
 
 <script>
-    const MENU_ID = {{ menu.id }};
+  const MENU_ID = {{ menu.id }};
+  const MENU_DEFAULT = {{ menu_json|safe }};
 </script>
-{% endblock %}Ï
+{% endblock %}
+
+{% block scripts %}
+<script src="{% static 'timerapp/js/timer.js' %}"></script>
+{% endblock %}

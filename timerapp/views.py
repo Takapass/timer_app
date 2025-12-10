@@ -24,7 +24,15 @@ def api_add_menu(request):
         name = data.get('name')
         if not name:
             return JsonResponse({'error': '名前を入力してください'}, status=400)
-        menu = TrainingMenu.objects.create(user=request.user, name=name)
+        # optional: accept work_seconds, rest_seconds, sets, countdown_mode from data
+        menu = TrainingMenu.objects.create(
+            user=request.user,
+            name=name,
+            work_seconds=int(data.get('work_seconds', 45)),
+            rest_seconds=int(data.get('rest_seconds', 60)),
+            sets=int(data.get('sets', 3)),
+            countdown_mode=bool(data.get('countdown_mode', False)),
+        )
         return JsonResponse({'id': menu.id, 'name': menu.name})
     return HttpResponseBadRequest()
 
@@ -32,7 +40,16 @@ def api_add_menu(request):
 @login_required
 def timer_view(request, menu_id):
     menu = get_object_or_404(TrainingMenu, id=menu_id, user=request.user)
-    return render(request, 'timerapp/timer.html', {'menu': menu})
+    # テンプレートにメニューのタイマー関連設定を渡す
+    return render(request, 'timerapp/timer.html', {
+        'menu': menu,
+        'menu_json': {
+            'work_seconds': menu.work_seconds,
+            'rest_seconds': menu.rest_seconds,
+            'sets': menu.sets,
+            'countdown_mode': menu.countdown_mode,
+        }
+    })
 
 
 @login_required
@@ -42,13 +59,20 @@ def api_save_session(request):
         menu_id = data.get('menu_id')
         duration = int(data.get('duration', 0))
         note = data.get('note', '')
+        sets_completed = int(data.get('sets_completed', 0))
         menu = None
         if menu_id:
             try:
                 menu = TrainingMenu.objects.get(id=menu_id, user=request.user)
             except TrainingMenu.DoesNotExist:
                 menu = None
-        session = TrainingSession.objects.create(user=request.user, menu=menu, duration_seconds=duration, note=note)
+        session = TrainingSession.objects.create(
+            user=request.user,
+            menu=menu,
+            duration_seconds=duration,
+            sets_completed=sets_completed,
+            note=note
+        )
         return JsonResponse({'id': session.id, 'duration_display': session.duration_display(), 'created_at': session.created_at.isoformat()})
     return HttpResponseBadRequest()
 

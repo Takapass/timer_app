@@ -19,9 +19,13 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # =========================
 # セキュリティ設定
 # =========================
-SECRET_KEY = os.getenv("SECRET_KEY")
+# SECRET_KEY = os.getenv("SECRET_KEY")
+SECRET_KEY = "django-insecure-temp-key-for-dev-only-1234567890"
 
-DEBUG = os.getenv("DEBUG", "False") == "True"
+
+# DEBUG = os.getenv("DEBUG", "False") == "True"
+DEBUG = True
+
 
 ALLOWED_HOSTS = [
     "localhost",
