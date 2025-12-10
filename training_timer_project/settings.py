@@ -23,8 +23,8 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # セキュリティ設定
 # =========================
 # SECRET_KEY = os.getenv("SECRET_KEY")
-SECRET_KEY = os.environ.get('SECRET_KEY')
-# SECRET_KEY = os.getenv("SECRET_KEY", "django-insecure-temp-key-for-dev-only-1234567890")
+# SECRET_KEY = os.environ.get('SECRET_KEY')
+SECRET_KEY = os.getenv("SECRET_KEY", "django-insecure-temp-key-for-dev-only-1234567890")
 
 # SECRET_KEY = "django-insecure-temp-key-for-dev-only-1234567890"
 
